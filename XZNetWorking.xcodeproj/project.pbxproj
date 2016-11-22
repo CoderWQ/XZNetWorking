@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A32ECA33EB3944F4B4FB3CF /* libPods-XZNetWorking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7133E6F31EC6242C47A715B /* libPods-XZNetWorking.a */; };
+		F75B4D8C1D7EA14E00D88DA0 /* XZNetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F75B4D8B1D7EA14E00D88DA0 /* XZNetWorkManager.m */; };
+		F75B4D8F1D7EA6D000D88DA0 /* XZNetWorkHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = F75B4D8E1D7EA6D000D88DA0 /* XZNetWorkHandler.m */; };
+		F75B4D921D7EA82E00D88DA0 /* XZNetworkItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F75B4D911D7EA82E00D88DA0 /* XZNetworkItem.m */; };
 		F7947BD81D7E9916005DE9BC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F7947BD71D7E9916005DE9BC /* main.m */; };
 		F7947BDB1D7E9916005DE9BC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F7947BDA1D7E9916005DE9BC /* AppDelegate.m */; };
 		F7947BDE1D7E9916005DE9BC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7947BDD1D7E9916005DE9BC /* ViewController.m */; };
@@ -35,6 +39,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		648E642F186A76ED397C6883 /* Pods-XZNetWorking.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XZNetWorking.debug.xcconfig"; path = "Pods/Target Support Files/Pods-XZNetWorking/Pods-XZNetWorking.debug.xcconfig"; sourceTree = "<group>"; };
+		C36BABC7CD6F803D069569B5 /* Pods-XZNetWorking.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XZNetWorking.release.xcconfig"; path = "Pods/Target Support Files/Pods-XZNetWorking/Pods-XZNetWorking.release.xcconfig"; sourceTree = "<group>"; };
+		F7133E6F31EC6242C47A715B /* libPods-XZNetWorking.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-XZNetWorking.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F75B4D8A1D7EA14E00D88DA0 /* XZNetWorkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XZNetWorkManager.h; sourceTree = "<group>"; };
+		F75B4D8B1D7EA14E00D88DA0 /* XZNetWorkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XZNetWorkManager.m; sourceTree = "<group>"; };
+		F75B4D8D1D7EA6D000D88DA0 /* XZNetWorkHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XZNetWorkHandler.h; sourceTree = "<group>"; };
+		F75B4D8E1D7EA6D000D88DA0 /* XZNetWorkHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XZNetWorkHandler.m; sourceTree = "<group>"; };
+		F75B4D901D7EA82E00D88DA0 /* XZNetworkItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XZNetworkItem.h; sourceTree = "<group>"; };
+		F75B4D911D7EA82E00D88DA0 /* XZNetworkItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XZNetworkItem.m; sourceTree = "<group>"; };
 		F7947BD31D7E9916005DE9BC /* XZNetWorking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XZNetWorking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7947BD71D7E9916005DE9BC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F7947BD91D7E9916005DE9BC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -51,6 +64,7 @@
 		F7947BF71D7E9916005DE9BC /* XZNetWorkingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XZNetWorkingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7947BFB1D7E9916005DE9BC /* XZNetWorkingUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XZNetWorkingUITests.m; sourceTree = "<group>"; };
 		F7947BFD1D7E9916005DE9BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F7947C091D7E99EE005DE9BC /* XZNetWorkingDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XZNetWorkingDefine.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A32ECA33EB3944F4B4FB3CF /* libPods-XZNetWorking.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +93,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A4AFF197942E9BB913DF44A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F7133E6F31EC6242C47A715B /* libPods-XZNetWorking.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EEC9FD95439CDD1E4EA9D671 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				648E642F186A76ED397C6883 /* Pods-XZNetWorking.debug.xcconfig */,
+				C36BABC7CD6F803D069569B5 /* Pods-XZNetWorking.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		F7947BCA1D7E9916005DE9BC = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +117,8 @@
 				F7947BEF1D7E9916005DE9BC /* XZNetWorkingTests */,
 				F7947BFA1D7E9916005DE9BC /* XZNetWorkingUITests */,
 				F7947BD41D7E9916005DE9BC /* Products */,
+				EEC9FD95439CDD1E4EA9D671 /* Pods */,
+				0A4AFF197942E9BB913DF44A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,6 +135,13 @@
 		F7947BD51D7E9916005DE9BC /* XZNetWorking */ = {
 			isa = PBXGroup;
 			children = (
+				F7947C091D7E99EE005DE9BC /* XZNetWorkingDefine.h */,
+				F75B4D8A1D7EA14E00D88DA0 /* XZNetWorkManager.h */,
+				F75B4D8B1D7EA14E00D88DA0 /* XZNetWorkManager.m */,
+				F75B4D8D1D7EA6D000D88DA0 /* XZNetWorkHandler.h */,
+				F75B4D8E1D7EA6D000D88DA0 /* XZNetWorkHandler.m */,
+				F75B4D901D7EA82E00D88DA0 /* XZNetworkItem.h */,
+				F75B4D911D7EA82E00D88DA0 /* XZNetworkItem.m */,
 				F7947BD91D7E9916005DE9BC /* AppDelegate.h */,
 				F7947BDA1D7E9916005DE9BC /* AppDelegate.m */,
 				F7947BDC1D7E9916005DE9BC /* ViewController.h */,
@@ -147,9 +188,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F7947C001D7E9916005DE9BC /* Build configuration list for PBXNativeTarget "XZNetWorking" */;
 			buildPhases = (
+				BC781D6E75B6685050384F20 /* [CP] Check Pods Manifest.lock */,
 				F7947BCF1D7E9916005DE9BC /* Sources */,
 				F7947BD01D7E9916005DE9BC /* Frameworks */,
 				F7947BD11D7E9916005DE9BC /* Resources */,
+				EFF807C6B0596106BDDBE1F3 /* [CP] Embed Pods Frameworks */,
+				A2CBDC2DC25901282760A5B5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -207,6 +251,7 @@
 				TargetAttributes = {
 					F7947BD21D7E9916005DE9BC = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = 2S9EXUX8CH;
 					};
 					F7947BEB1D7E9916005DE9BC = {
 						CreatedOnToolsVersion = 7.3;
@@ -265,14 +310,65 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		A2CBDC2DC25901282760A5B5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-XZNetWorking/Pods-XZNetWorking-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BC781D6E75B6685050384F20 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EFF807C6B0596106BDDBE1F3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-XZNetWorking/Pods-XZNetWorking-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F7947BCF1D7E9916005DE9BC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				F7947BDE1D7E9916005DE9BC /* ViewController.m in Sources */,
+				F75B4D8F1D7EA6D000D88DA0 /* XZNetWorkHandler.m in Sources */,
+				F75B4D8C1D7EA14E00D88DA0 /* XZNetWorkManager.m in Sources */,
 				F7947BDB1D7E9916005DE9BC /* AppDelegate.m in Sources */,
 				F7947BD81D7E9916005DE9BC /* main.m in Sources */,
+				F75B4D921D7EA82E00D88DA0 /* XZNetworkItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,6 +444,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -392,6 +489,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -411,23 +509,42 @@
 		};
 		F7947C011D7E9916005DE9BC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 648E642F186A76ED397C6883 /* Pods-XZNetWorking.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 2S9EXUX8CH;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = XZNetWorking/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/AFNetworking",
+				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = coderwq.github.io.XZNetWorking;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 			};
 			name = Debug;
 		};
 		F7947C021D7E9916005DE9BC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C36BABC7CD6F803D069569B5 /* Pods-XZNetWorking.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 2S9EXUX8CH;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = XZNetWorking/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/AFNetworking",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = coderwq.github.io.XZNetWorking;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 			};
 			name = Release;
 		};
@@ -496,6 +613,7 @@
 				F7947C021D7E9916005DE9BC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F7947C031D7E9916005DE9BC /* Build configuration list for PBXNativeTarget "XZNetWorkingTests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +622,7 @@
 				F7947C051D7E9916005DE9BC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F7947C061D7E9916005DE9BC /* Build configuration list for PBXNativeTarget "XZNetWorkingUITests" */ = {
 			isa = XCConfigurationList;
@@ -512,6 +631,7 @@
 				F7947C081D7E9916005DE9BC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

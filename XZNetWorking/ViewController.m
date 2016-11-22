@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-
+#import "XZNetWorkManager.h"
 @interface ViewController ()
 
 @end
@@ -16,7 +16,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+
+    [XZNetWorkManager GETRequestWithUrl:@"http://httpbin.org/get" parameters:nil success:^(id response) {
+       
+        NSLog(@"%@---%@",[NSThread currentThread],response);
+        
+    } failure:^(NSError *error) {
+        
+    }];
+
+
 }
 
 - (void)didReceiveMemoryWarning {
