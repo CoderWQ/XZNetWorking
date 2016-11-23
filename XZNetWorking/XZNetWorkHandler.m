@@ -45,33 +45,6 @@
 
 
 
-//监听网络状态
-- (void)startMonitorNetWorkStatus
-{
-    
-    AFNetworkReachabilityManager *manager  =  [AFNetworkReachabilityManager sharedManager];
-    [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-        switch (status) {
-            case AFNetworkReachabilityStatusUnknown:
-                NSLog(@"未知网络");
-                [XZNetWorkHandler shareHandler].NetWorkError = NO;
-                break;
-            case AFNetworkReachabilityStatusNotReachable:
-                NSLog(@"无网络");
-                [XZNetWorkHandler shareHandler].NetWorkError = YES;
-                break;
-            case AFNetworkReachabilityStatusReachableViaWiFi:
-                [XZNetWorkHandler shareHandler].NetWorkError = NO;
-                NSLog(@"WIFI");
-                break;
-            case AFNetworkReachabilityStatusReachableViaWWAN:
-                [XZNetWorkHandler shareHandler].NetWorkError = NO;
-                NSLog(@"WAN网络");
-                break;
-        }
-    }];
-    [manager startMonitoring];
-}
 
 
 - (NSMutableArray *)items

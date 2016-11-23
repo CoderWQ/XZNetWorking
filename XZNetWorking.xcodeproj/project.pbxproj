@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		2A32ECA33EB3944F4B4FB3CF /* libPods-XZNetWorking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7133E6F31EC6242C47A715B /* libPods-XZNetWorking.a */; };
+		F716E18A1DE5485900014170 /* XZNetworkItem+request.m in Sources */ = {isa = PBXBuildFile; fileRef = F716E1891DE5485900014170 /* XZNetworkItem+request.m */; };
+		F716E18E1DE5744900014170 /* XZMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = F716E18D1DE5744900014170 /* XZMemoryCache.m */; };
+		F716E1911DE5745800014170 /* XZDiskCache.m in Sources */ = {isa = PBXBuildFile; fileRef = F716E1901DE5745800014170 /* XZDiskCache.m */; };
+		F716E1941DE5746600014170 /* XZCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F716E1931DE5746600014170 /* XZCacheManager.m */; };
+		F716E19B1DE57E3B00014170 /* NSString+XZCacheExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = F716E19A1DE57E3B00014170 /* NSString+XZCacheExtension.m */; };
 		F75B4D8C1D7EA14E00D88DA0 /* XZNetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F75B4D8B1D7EA14E00D88DA0 /* XZNetWorkManager.m */; };
 		F75B4D8F1D7EA6D000D88DA0 /* XZNetWorkHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = F75B4D8E1D7EA6D000D88DA0 /* XZNetWorkHandler.m */; };
 		F75B4D921D7EA82E00D88DA0 /* XZNetworkItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F75B4D911D7EA82E00D88DA0 /* XZNetworkItem.m */; };
@@ -42,6 +47,16 @@
 		648E642F186A76ED397C6883 /* Pods-XZNetWorking.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XZNetWorking.debug.xcconfig"; path = "Pods/Target Support Files/Pods-XZNetWorking/Pods-XZNetWorking.debug.xcconfig"; sourceTree = "<group>"; };
 		C36BABC7CD6F803D069569B5 /* Pods-XZNetWorking.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XZNetWorking.release.xcconfig"; path = "Pods/Target Support Files/Pods-XZNetWorking/Pods-XZNetWorking.release.xcconfig"; sourceTree = "<group>"; };
 		F7133E6F31EC6242C47A715B /* libPods-XZNetWorking.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-XZNetWorking.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F716E1881DE5485900014170 /* XZNetworkItem+request.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XZNetworkItem+request.h"; sourceTree = "<group>"; };
+		F716E1891DE5485900014170 /* XZNetworkItem+request.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XZNetworkItem+request.m"; sourceTree = "<group>"; };
+		F716E18C1DE5744900014170 /* XZMemoryCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XZMemoryCache.h; sourceTree = "<group>"; };
+		F716E18D1DE5744900014170 /* XZMemoryCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XZMemoryCache.m; sourceTree = "<group>"; };
+		F716E18F1DE5745800014170 /* XZDiskCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XZDiskCache.h; sourceTree = "<group>"; };
+		F716E1901DE5745800014170 /* XZDiskCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XZDiskCache.m; sourceTree = "<group>"; };
+		F716E1921DE5746600014170 /* XZCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XZCacheManager.h; sourceTree = "<group>"; };
+		F716E1931DE5746600014170 /* XZCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XZCacheManager.m; sourceTree = "<group>"; };
+		F716E1991DE57E3B00014170 /* NSString+XZCacheExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+XZCacheExtension.h"; sourceTree = "<group>"; };
+		F716E19A1DE57E3B00014170 /* NSString+XZCacheExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+XZCacheExtension.m"; sourceTree = "<group>"; };
 		F75B4D8A1D7EA14E00D88DA0 /* XZNetWorkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XZNetWorkManager.h; sourceTree = "<group>"; };
 		F75B4D8B1D7EA14E00D88DA0 /* XZNetWorkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XZNetWorkManager.m; sourceTree = "<group>"; };
 		F75B4D8D1D7EA6D000D88DA0 /* XZNetWorkHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XZNetWorkHandler.h; sourceTree = "<group>"; };
@@ -110,6 +125,21 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		F716E18B1DE572F100014170 /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				F716E1921DE5746600014170 /* XZCacheManager.h */,
+				F716E1931DE5746600014170 /* XZCacheManager.m */,
+				F716E18C1DE5744900014170 /* XZMemoryCache.h */,
+				F716E18D1DE5744900014170 /* XZMemoryCache.m */,
+				F716E18F1DE5745800014170 /* XZDiskCache.h */,
+				F716E1901DE5745800014170 /* XZDiskCache.m */,
+				F716E1991DE57E3B00014170 /* NSString+XZCacheExtension.h */,
+				F716E19A1DE57E3B00014170 /* NSString+XZCacheExtension.m */,
+			);
+			path = Cache;
+			sourceTree = "<group>";
+		};
 		F7947BCA1D7E9916005DE9BC = {
 			isa = PBXGroup;
 			children = (
@@ -135,6 +165,7 @@
 		F7947BD51D7E9916005DE9BC /* XZNetWorking */ = {
 			isa = PBXGroup;
 			children = (
+				F716E18B1DE572F100014170 /* Cache */,
 				F7947C091D7E99EE005DE9BC /* XZNetWorkingDefine.h */,
 				F75B4D8A1D7EA14E00D88DA0 /* XZNetWorkManager.h */,
 				F75B4D8B1D7EA14E00D88DA0 /* XZNetWorkManager.m */,
@@ -142,6 +173,8 @@
 				F75B4D8E1D7EA6D000D88DA0 /* XZNetWorkHandler.m */,
 				F75B4D901D7EA82E00D88DA0 /* XZNetworkItem.h */,
 				F75B4D911D7EA82E00D88DA0 /* XZNetworkItem.m */,
+				F716E1881DE5485900014170 /* XZNetworkItem+request.h */,
+				F716E1891DE5485900014170 /* XZNetworkItem+request.m */,
 				F7947BD91D7E9916005DE9BC /* AppDelegate.h */,
 				F7947BDA1D7E9916005DE9BC /* AppDelegate.m */,
 				F7947BDC1D7E9916005DE9BC /* ViewController.h */,
@@ -363,11 +396,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F716E1941DE5746600014170 /* XZCacheManager.m in Sources */,
 				F7947BDE1D7E9916005DE9BC /* ViewController.m in Sources */,
+				F716E18E1DE5744900014170 /* XZMemoryCache.m in Sources */,
+				F716E18A1DE5485900014170 /* XZNetworkItem+request.m in Sources */,
 				F75B4D8F1D7EA6D000D88DA0 /* XZNetWorkHandler.m in Sources */,
 				F75B4D8C1D7EA14E00D88DA0 /* XZNetWorkManager.m in Sources */,
 				F7947BDB1D7E9916005DE9BC /* AppDelegate.m in Sources */,
 				F7947BD81D7E9916005DE9BC /* main.m in Sources */,
+				F716E1911DE5745800014170 /* XZDiskCache.m in Sources */,
+				F716E19B1DE57E3B00014170 /* NSString+XZCacheExtension.m in Sources */,
 				F75B4D921D7EA82E00D88DA0 /* XZNetworkItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
