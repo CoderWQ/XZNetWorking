@@ -9,7 +9,7 @@
 #import "XZDiskCache.h"
 #import "NSString+XZCacheExtension.h"
 
-#define FileManager [NSFileManager defaultManager]
+
 @implementation XZDiskCache
 
 
@@ -23,19 +23,33 @@
     
     NSError *error = nil;
     
-    if (![FileManager fileExistsAtPath:directoryPath isDirectory:nil]) {
+  
+    
+    
+    if (![XZFileManager fileExistsAtPath:directoryPath isDirectory:nil]) {
         
-        [FileManager createDirectoryAtPath:directoryPath withIntermediateDirectories:YES attributes:nil error:&error];
+        [XZFileManager createDirectoryAtPath:directoryPath withIntermediateDirectories:YES attributes:nil error:&error];
         
     }
+    
+  
     
     if (error) {
         NSLog(@"创建失败--%@",error.localizedDescription);
     }
 
-    NSString *filePath = [directoryPath stringByAppendingPathComponent:fileName];
+    NSString *filePath = [directoryPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@",fileName]];
     
-    [FileManager createFileAtPath:filePath contents:data attributes:nil];
+ 
+    
+   BOOL success = [[NSFileManager defaultManager] createFileAtPath:filePath contents:data attributes:nil];
+    
+    if (!success) {
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"hahahha" object:nil];
+
+    }
+    
+    
     
     
 }
@@ -50,7 +64,7 @@
     
     NSString *path = [directoryPath stringByAppendingPathComponent:filename];
     
-    data = [FileManager contentsAtPath:path];
+    data = [XZFileManager contentsAtPath:path];
     
     return  data;
     
@@ -68,9 +82,9 @@
 + (void)clearDataInDirPath:(NSString *)directoryPath{
     
     if (directoryPath) {
-        if ([FileManager fileExistsAtPath:directoryPath isDirectory:nil]) {
+        if ([XZFileManager fileExistsAtPath:directoryPath isDirectory:nil]) {
             NSError *error = nil;
-            [FileManager removeItemAtPath:directoryPath error:&error];
+            [XZFileManager removeItemAtPath:directoryPath error:&error];
             if (error) {
                 NSLog(@"清理缓存是出现错误：%@",error.localizedDescription);
             }
@@ -81,9 +95,9 @@
 + (void)deleteCache:(NSString *)fileUrl{
     
     if (fileUrl) {
-        if ([FileManager fileExistsAtPath:fileUrl]) {
+        if ([XZFileManager fileExistsAtPath:fileUrl]) {
             NSError *error = nil;
-            [FileManager removeItemAtPath:fileUrl error:&error];
+            [XZFileManager removeItemAtPath:fileUrl error:&error];
             if (error) {
                 NSLog(@"删除文件出现错误出现错误：%@",error.localizedDescription);
             }

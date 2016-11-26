@@ -31,11 +31,10 @@
     
 }
 
-+ (void)writeData:(id __nonnull) data forKey:(NSString * __nonnull)key{
-    
-    assert(data);
-    
-    assert(key);
++ (void)writeData:(id)data forkey:(NSString *)key{
+//    assert(data);
+//    
+//    assert(key);
     
     NSCache *cache = [XZMemoryCache shareCache];
     

@@ -11,6 +11,9 @@
 #import "AFNetworking.h"
 #import "AFNetworkActivityIndicatorManager.h"
 #import "XZNetworkItem+request.h"
+#import "XZCacheManager.h"
+#import "MBProgressHUD.h"
+#import <objc/runtime.h>
 #define XZ_ERROR_IMFORMATION @"网络出现错误，请检查网络连接"
 
 #define XZ_ERROR [NSError errorWithDomain:@"com.caixindong.XZNetworking.ErrorDomain" code:-999 userInfo:@{ NSLocalizedDescriptionKey:XZ_ERROR_IMFORMATION}]
@@ -23,12 +26,39 @@ static NSDictionary    *headers;
 
 static NSTimeInterval  requestTimeout = 20.f;
 
+@interface XZNetworkItem()
+@property (nonatomic,assign)RequestType requsetType;
+
+@property (nonatomic,strong)NSString *urlString;
+
+@property (nonatomic,strong)NSDictionary *params;
+
+@property (nonatomic,copy)XZDownloadProgress progress;
+
+@property (nonatomic,copy)XZRequestSuccessBlock success;
+
+@property (nonatomic,copy)XZRequestFailureBlock failure;
+
+@property (nonatomic,assign,getter=isRefresh)BOOL refresh;
+
+@property (nonatomic,assign,getter=isHaveCache)BOOL haveCache;
+
+@property (nonatomic,assign)XZNetworkRequestGraceTimeType graceTimeType;
+@end
+
 @implementation XZNetworkItem
+
+
+
++ (void)setupTimeout:(NSTimeInterval)timeout{
+    requestTimeout = timeout;
+}
 
 - (XZNetworkItem *)initWithRequetType:(RequestType)requestType
                                   Url:(NSString *)url
                                 cache:(BOOL)cache
                        refreshRequest:(BOOL)refresh
+                            graceTime:(XZNetworkRequestGraceTimeType)graceTime
                                params:(NSDictionary *)params
                              progress:(XZDownloadProgress)progress
                               success:(XZRequestSuccessBlock)success
@@ -41,14 +71,14 @@ static NSTimeInterval  requestTimeout = 20.f;
         self.urlString = url;
         self.haveCache = cache;
         self.refresh = refresh;
+        self.graceTimeType = graceTime;
         self.params = params;
         self.progress = progress;
         self.success = success;
         self.failure = failure;
-        
+       
     }
-    NSLog(@"请求地址%@",self.urlString);
-    NSLog(@"请求参数%@",self.params);
+ 
 
     AFHTTPSessionManager *manager = [self manager];
     
@@ -72,7 +102,6 @@ static NSTimeInterval  requestTimeout = 20.f;
     
     __weak typeof (self)weakSelf = self;
     
-    
     //将session拷贝到堆中，block内部才可以获取得到session
     __block XZURLSessionTask *session = nil;
     
@@ -82,47 +111,66 @@ static NSTimeInterval  requestTimeout = 20.f;
             _failure(XZ_ERROR);
         return session;
     }
-    // 2.判断有无缓存
     
+    // 2.获取转圈控件
+    MBProgressHUD *hud = [self hud:self.graceTimeType];
+    
+    
+    
+    // 3.判断有无缓存
+    id responseObj = [[XZCacheManager shareManager] getCacheResponseObjectWithRequestUrl:self.urlString params:self.params];
+    
+    if (responseObj && _haveCache) {
+        if (_success) {
+            _success(responseObj);
+        }
+    }
    
     // 3.正常发请求
     session = [mgr GET:self.urlString parameters:self.params progress:^(NSProgress * _Nonnull downloadProgress) {
         
-        if (_progress) {
-            _progress(downloadProgress.completedUnitCount,downloadProgress.totalUnitCount);
+        if (weakSelf.progress) {
+            weakSelf.progress(downloadProgress.completedUnitCount,downloadProgress.totalUnitCount);
         }
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"%@",[NSThread currentThread]);
-
+ 
+        hud.taskInProgress = NO;
+        [hud hide:YES];
+        
         if (weakSelf.success) weakSelf.success(responseObject);
         
-        // 如果有缓存，存思密达
+        if (weakSelf.haveCache) [[XZCacheManager shareManager] saveCacheResponseObject:responseObject requestUrl:self.urlString params:self.params];
+        
         
         // 干掉当前的task
-        if ([self.allTasks containsObject:session]) [self.allTasks removeObject:session];
+        if ([weakSelf.allTasks containsObject:session]) [weakSelf.allTasks removeObject:session];
        
         
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"%@",[NSThread currentThread]);
-
-        if (weakSelf.failure)  weakSelf.failure(error);
-       
+ 
+        hud.taskInProgress = NO;
+        [hud hide:YES];
         
-        if ([self.allTasks containsObject:session]) [self.allTasks removeObject:session];
+        if (weakSelf.failure)  weakSelf.failure(error);
+        
+        if ([weakSelf.allTasks containsObject:session]) [weakSelf.allTasks removeObject:session];
        
       
     }];
+    
     
     if ([self haveSameRequestInTasksPool:session] && !self.isRefresh) {
        // 有请求的时候且不刷新。取消当前请求就可以了。
         [session cancel];
         return session;
     }else{
-        // 其他情况，有旧的删旧的 不管怎么样，都加数组了
+         // 其他情况，有旧的删旧的 不管怎么样，都加数组了
         XZURLSessionTask *oldTask = [self cancleSameRequestInTasksPool:session];
         if (oldTask) {
+            // 有旧的
+
             [self.allTasks removeObject:oldTask];
         }
         if (session) {
@@ -131,10 +179,7 @@ static NSTimeInterval  requestTimeout = 20.f;
         [session resume];
         return session;
     }
-    
-    
-    
-    return session;
+ 
    
 }
 #pragma  mark -POST请求
@@ -250,6 +295,15 @@ static NSTimeInterval  requestTimeout = 20.f;
     [self startMonitorNetWorkStatus];
     
     
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+       
+        // 里面涉及计算，防止卡主主线程
+        [[XZCacheManager shareManager] clearLRUCache];
+
+    });
+    
+    
+    
     return manager;
 }
 
@@ -280,9 +334,7 @@ static NSTimeInterval  requestTimeout = 20.f;
             case AFNetworkReachabilityStatusReachableViaWWAN:
                  NSLog(@"WAN网络");
                 networkStatus = XZNetworkStatusReachableViaWWAN;
-
-                
-                
+ 
                 break;
         }
     }];
@@ -311,4 +363,82 @@ static NSTimeInterval  requestTimeout = 20.f;
     
     return requestTasksPool;
 }
+
+
+#pragma mark - MBProgress
+- (MBProgressHUD *)hud:(XZNetworkRequestGraceTimeType)graceTimeType{
+    NSTimeInterval graceTime = 0;
+    switch (graceTimeType) {
+        case XZNetworkRequestGraceTimeTypeNone:
+            return nil;
+            break;
+        case XZNetworkRequestGraceTimeTypeNormal:
+            graceTime = 0.5;
+            break;
+        case XZNetworkRequestGraceTimeTypeLong:
+            graceTime = 1.0;
+            break;
+        case XZNetworkRequestGraceTimeTypeShort:
+            graceTime = 0.1;
+            break;
+        case XZNetworkRequestGraceTimeTypeAlways:
+            graceTime = 0;
+            break;
+    }
+    
+    MBProgressHUD *hud = [self hud];
+    [[UIApplication sharedApplication].keyWindow addSubview:hud];
+    hud.graceTime = graceTime;
+    
+    // 设置该属性，graceTime才能生效
+    hud.taskInProgress = YES;
+    [hud show:YES];
+    
+    return hud;
+}
+
+
+// 网络请求频率很高，不必每次都创建\销毁一个hud，只需创建一个反复使用即可
+- (MBProgressHUD *)hud{
+    MBProgressHUD *hud = objc_getAssociatedObject(self, _cmd);
+    
+    if (!hud) {
+        // 参数kLastWindow仅仅是用到了其CGFrame，并没有将hud添加到上面
+        hud = [[MBProgressHUD alloc] initWithWindow:[UIApplication sharedApplication].keyWindow];
+        hud.labelText = @"加载中...";
+        
+        objc_setAssociatedObject(self, _cmd, hud, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        
+        NSLog(@"创建了一个HUD");
+    }
+    return hud;
+}
+
+
+#pragma makr - 取消相关请求
++ (void)cancelRequestWithURL:(NSString *)url{
+    if (!url) return;
+    @synchronized (self) {
+        [[self allTasks] enumerateObjectsUsingBlock:^(XZURLSessionTask * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([obj isKindOfClass:[XZURLSessionTask class]]) {
+                if ([obj.currentRequest.URL.absoluteString hasSuffix:url]) {
+                    [obj cancel];
+                    *stop = YES;
+                }
+            }
+        }];
+    }
+
+}
++ (void)cancelAllRequest {
+    @synchronized (self) {
+        [[self allTasks] enumerateObjectsUsingBlock:^(XZURLSessionTask  *_Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([obj isKindOfClass:[XZURLSessionTask class]]) {
+                [obj cancel];
+            }
+        }];
+        [[self allTasks] removeAllObjects];
+    }
+}
+
 @end

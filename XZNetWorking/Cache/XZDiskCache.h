@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "XZCacheDefine.h"
 @interface XZDiskCache : NSObject
 
 /**
- 写到沙盒的哪里
+ 写入硬盘数据
 
  @param data 数据
  @param directoryPath 路径
@@ -33,7 +33,7 @@
              filename:(NSString *)filename;
 
 /**
- *  获取目录中文件总大小
+ *  获取目录中文件总大小--注意放入子线程
  *
  *  @param directory 目录名
  *

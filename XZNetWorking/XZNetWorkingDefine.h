@@ -53,7 +53,22 @@ typedef NS_ENUM(NSInteger, XZNetworkStatus) {
      */
     XZNetworkStatusReachableViaWiFi    = 1 << 3
 };
+// 网络提示框的出现时机，若干秒后网络数据还未返回则出现提示框
 
+/**
+  网络提示框的出现时机
+  如果0.5s后没返回数据，显示框。
+  以此类推
+ */
+typedef NS_ENUM(NSUInteger, XZNetworkRequestGraceTimeType){
+   
+    XZNetworkRequestGraceTimeTypeNormal,  // 0.5s
+    XZNetworkRequestGraceTimeTypeLong,    // 1s
+    XZNetworkRequestGraceTimeTypeShort,   // 0.1s
+    XZNetworkRequestGraceTimeTypeNone,     // 没有提示框
+    XZNetworkRequestGraceTimeTypeAlways   // 总是有提示框
+    
+};
 
 
 

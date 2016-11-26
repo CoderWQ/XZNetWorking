@@ -13,25 +13,16 @@
 
 @property(nonatomic,weak)id<XZNetWorkDelegate> delegate;
 
-@property (nonatomic,assign)RequestType requsetType;
 
-@property (nonatomic,strong)NSString *urlString;
-
-@property (nonatomic,strong)NSDictionary *params;
-
-
-@property (nonatomic,copy)XZDownloadProgress progress;
-
-@property (nonatomic,copy)XZRequestSuccessBlock success;
-
-@property (nonatomic,copy)XZRequestFailureBlock failure;
-
-@property (nonatomic,assign,getter=isRefresh)BOOL refresh;
-
-@property (nonatomic,assign,getter=isHaveCache)BOOL haveCache;
 
 
 @property (nonatomic,strong)NSMutableArray *allTasks;
+
+
+
++ (void)setupTimeout:(NSTimeInterval)timeout;
+
+
 
 /**
  初始化一些参数
@@ -40,6 +31,7 @@
  @param url 网址类型
  @param Cache 是否要缓存
  @param refresh 是否只存在一个请求（多次发起同一请求，会取消前一个请求）
+ @param 指示框的HUD
  @param params 请求参数
  @param success 成功
  @param failure 失败
@@ -49,20 +41,20 @@
                                   Url:(NSString *)url
                                 cache:(BOOL)cache
                        refreshRequest:(BOOL)refresh
+                            graceTime:(XZNetworkRequestGraceTimeType)graceTime
                                params:(NSDictionary *)params
                              progress:(XZDownloadProgress)progress
                               success:(XZRequestSuccessBlock)success
-                              failure:(XZRequestFailureBlock)failure;
+                              failure:(XZRequestFailureBlock)failur;
 
 
 
-- (XZNetworkItem *)initWithRequetType:(RequestType)requestType
-                                  Url:(NSString *)url
-                               params:(NSDictionary *)params
-                              success:(XZRequestSuccessBlock)success
-                              failure:(XZRequestFailureBlock)failure;
-
-
-
-
+/**
+ 取消某个请求
+ */
++ (void)cancelRequestWithURL:(NSString *)url;
+/**
+ 取消所有的请求
+ */
++ (void)cancelAllRequest;
 @end

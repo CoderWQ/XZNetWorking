@@ -8,9 +8,15 @@
 
 #import "XZNetWorkManager.h"
 #import "AFNetworking.h"
-#import "XZNetWorkHandler.h"
 #import "XZNetWorkingDefine.h"
+#import "XZNetworkItem.h"
+
+static NSDictionary *headers;
+
+
 @implementation XZNetWorkManager
+
+
 
 + (instancetype)manager
 {
@@ -18,31 +24,71 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         manager = [[XZNetWorkManager alloc] init];
+        // 初始化的时候设定的均为需要
+        [manager configerDefaultParms];
     });
+    
     return manager;
 }
 
++ (void)configHttpHeader:(NSDictionary *)httpHeader{
+    headers = httpHeader;
+}
 
-+ (void)GETRequestWithUrl:(NSString *)URLString
+
++ (void)setupTimeout:(NSTimeInterval)timeout{
+    
+    [XZNetworkItem setupTimeout:timeout];
+}
+
+
+
+- (void)GETRequestWithUrl:(NSString *)URLString
                parameters:(NSDictionary *)parameters
                   success:(XZRequestSuccessBlock)successBlock
                   failure:(XZRequestFailureBlock)failureBlock{
     
-    [[XZNetWorkHandler shareHandler] requestUrl:URLString requestType:RequestTypeGet params:parameters success:successBlock failus:failureBlock] ;
+    
+    self.item = [[XZNetworkItem alloc] initWithRequetType:RequestTypeGet Url:URLString cache:self.haveCache refreshRequest:self.refresh graceTime:self.graceTimeType params:parameters progress:nil success:successBlock failure:failureBlock];
+    
+    // 恢复默认配置
+    [self configerDefaultParms];
+ 
+
+     
+}
+
+
+
+
+
+
+
+- (void)configerDefaultParms{
+    
+    [self setupRefresh:XZDefaultRefresh HaveCache:XZDefaultCache showHud:XZDefaultGraceTimeType];
+}
+
+
+
+- (void)setupRefresh:(BOOL)refresh HaveCache:(BOOL)haveCache showHud:(XZNetworkRequestGraceTimeType)graceTimeType{
+    
+    self.refresh = refresh;
+    self.haveCache = haveCache;
+    self.graceTimeType = graceTimeType;
     
 }
 
 
-+ (void)POSTRequestWithUrl:(NSString *)URLString
-                parameters:(NSDictionary *)parameters
-                   success:(XZRequestSuccessBlock)successBlock
-                   failure:(XZRequestFailureBlock)failureBlock{
+#pragma mark - 取消相关请求
++ (void)cancelRequestWithURL:(NSString *)url{
     
-    [[XZNetWorkHandler shareHandler] requestUrl:URLString requestType:RequestTypePost params:parameters success:successBlock failus:failureBlock] ;
-
+    [XZNetworkItem cancelRequestWithURL:url];
+    
 }
-
-
++ (void)cancelAllRequest{
+    [XZNetworkItem cancelAllRequest];
+}
 
 
 @end
